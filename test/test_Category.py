@@ -1,22 +1,3 @@
-import pytest
-
-from src.Category import Category
-
-
-@pytest.fixture
-def cat_1():
-    return Category(
-        "Смартфоны",
-        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        ["Iphone", "Samsung"],
-    )
-
-
-@pytest.fixture
-def cat_2():
-    return Category("Принтеры", "Принтеры средство для печати", ["Canon", "aga", "reg"])
-
-
 def test_init1(cat_1):
     assert cat_1.name == "Смартфоны"
     assert (
