@@ -4,6 +4,7 @@ def test_init(prod_1):
     assert prod_1.price == 210000.0
     assert prod_1.quantity == 8
 
+
 def test_init_2(prod_2):
     assert prod_2.name == "Book"
     assert prod_2.description == "paper"
