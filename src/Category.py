@@ -1,4 +1,5 @@
 class Category:
+    """Создание класса Category"""
     name = str
     description = str
     products = list

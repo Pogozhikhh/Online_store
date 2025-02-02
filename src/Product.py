@@ -1,4 +1,5 @@
 class Product:
+    """Создание класса Product"""
     name = str
     description = str
     price = float
