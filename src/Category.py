@@ -30,7 +30,6 @@ class Category:
             total_quanity += product.quantity
         return f"{self.name}, количество продуктов: {total_quanity} шт."
 
-
     @property
     def product_list(self):
         product_str = ""
@@ -41,4 +40,4 @@ class Category:
     def add_product(self, new_prod: Product):
         """Метод добавления нового продукта"""
         self.__products.append(new_prod)
-        Category.category_count += 1
+        Category.product_count += 1

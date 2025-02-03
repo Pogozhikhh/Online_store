@@ -28,4 +28,4 @@ def test_category(category_tv, product_4):
 
 def test_count_quanity(category_smart):
     test = str(category_smart)
-    assert test == 'Смартфоны, количество продуктов: 27 шт.'
+    assert test == "Смартфоны, количество продуктов: 27 шт."
