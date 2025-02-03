@@ -23,7 +23,7 @@ def test_category(category_tv, product_4):
     was_products = Category.product_count
     category_tv.add_product(product_4)
     category_tv.add_product(new_prod)
-    assert Category.product_count == was_products
+    assert Category.product_count == was_products + 2
 
 
 def test_count_quanity(category_smart):
