@@ -23,4 +23,4 @@ def test_category(category_smart, product_4):
     was_products = Category.product_count
     category_smart.add_product(product_4)
     category_smart.add_product(new_prod)
-    assert Category.product_count == was_products
+    assert Category.product_count == was_products + 2
