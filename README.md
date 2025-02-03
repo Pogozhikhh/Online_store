@@ -99,4 +99,26 @@ class Category:
             self.__price = value
 ```
 
-## Код покрыт тестами 100%
+## Домашняя работа 15_1
+### Реализация методов __add__ и __str__ в классах
+
+### Класс Product
+```
+    def __str__(self):
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        return self.__price * self.quantity + other.__price * other.quantity
+```
+
+### Класс Category
+
+```
+    def __str__(self):
+        total_quanity = 0
+        for product in self.__products:
+            total_quanity += product.quantity
+        return f"{self.name}, количество продуктов: {total_quanity} шт."
+```
+
+## Код покрыт тестами 96%

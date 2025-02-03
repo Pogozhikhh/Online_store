@@ -19,8 +19,13 @@ def test_category_tv(category_tv, product_4):
     assert category_tv.products == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.'
 
 
-def test_category(category_smart, product_4):
+def test_category(category_tv, product_4):
     was_products = Category.product_count
-    category_smart.add_product(product_4)
-    category_smart.add_product(new_prod)
+    category_tv.add_product(product_4)
+    category_tv.add_product(new_prod)
     assert Category.product_count == was_products
+
+
+def test_count_quanity(category_smart):
+    test = str(category_smart)
+    assert test == 'Смартфоны, количество продуктов: 27 шт.'
