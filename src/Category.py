@@ -34,10 +34,13 @@ class Category:
     def product_list(self):
         product_str = ""
         for product in self.__products:
-            product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт."
+            product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return product_str
 
     def add_product(self, new_prod: Product):
         """Метод добавления нового продукта"""
-        self.__products.append(new_prod)
+        if not isinstance(new_prod, Product):
+            raise TypeError
+        else:
+            self.__products.append(new_prod)
         Category.product_count += 1

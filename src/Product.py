@@ -13,7 +13,7 @@ class Product:
         self.quantity = quantity
 
     def __str__(self):
-        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.\n"
 
     def __add__(self, other):
         return self.__price * self.quantity + other.__price * other.quantity
@@ -38,8 +38,10 @@ class Product:
         quantity = product_data.get("quantity")
         return cls(name, description, price, quantity)
 
+
 class Smartphone(Product):
-    """ Создание дочернего класса Product"""
+    """Создание дочернего класса Product"""
+
     def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
@@ -47,10 +49,28 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
+    def __add__(self, other):
+        if type(other) is Smartphone:
+            return self.quantity + other.quantity
+        elif isinstance(other, int):
+            return self.quantity + other
+        else:
+            raise TypeError
+
+
 class LawnGrass(Product):
-    """ Создание дочернего класса Product"""
+    """Создание дочернего класса Product"""
+
     def __init__(self, name, description, price, quantity, country, germination_period, color):
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period
         self.color = color
+
+    def __add__(self, other):
+        if type(other) is LawnGrass:
+            return self.quantity + other.quantity
+        elif isinstance(other, int):
+            return self.quantity + other
+        else:
+            raise TypeError

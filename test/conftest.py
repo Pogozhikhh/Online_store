@@ -1,7 +1,12 @@
 import pytest
 
 from src.Category import Category
-from src.Product import Product
+from src.Product import LawnGrass, Product
+
+
+@pytest.fixture
+def grass_1():
+    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
 
 
 @pytest.fixture

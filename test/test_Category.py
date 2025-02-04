@@ -1,3 +1,7 @@
+from test.conftest import category_tv
+
+import pytest
+
 from src.Category import Category
 from src.Product import Product
 
@@ -16,7 +20,7 @@ def test_category_tv(category_tv, product_4):
     assert category_tv.description == (
         "Современный телевизор, который позволяет наслаждаться просмотром," " станет вашим другом и помощником"
     )
-    assert category_tv.products == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.'
+    assert category_tv.products == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.\n'
 
 
 def test_category(category_tv, product_4):
@@ -29,3 +33,8 @@ def test_category(category_tv, product_4):
 def test_count_quanity(category_smart):
     test = str(category_smart)
     assert test == "Смартфоны, количество продуктов: 27 шт."
+
+
+def test_add_different_class(category_smart):
+    with pytest.raises(TypeError):
+        category_smart.add_product("Nothing")

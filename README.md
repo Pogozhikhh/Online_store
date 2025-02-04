@@ -120,5 +120,46 @@ class Category:
             total_quanity += product.quantity
         return f"{self.name}, количество продуктов: {total_quanity} шт."
 ```
+## Домашняя работа 16_1
+### Создание классов наследников LawnGrass и Smartphone от класса Product
 
-## Код покрыт тестами 96%
+### Класс LawnGrass
+```
+class LawnGrass(Product):
+    """Создание дочернего класса Product"""
+    def __init__(self, name, description, price, quantity, country, germination_period, color):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is LawnGrass:
+            return self.quantity + other.quantity
+        elif isinstance(other, int):
+            return self.quantity + other
+        else:
+            raise TypeError
+```
+### Класс Smartphone
+```
+class Smartphone(Product):
+    """Создание дочернего класса Product"""
+
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is Smartphone:
+            return self.quantity + other.quantity
+        elif isinstance(other, int):
+            return self.quantity + other
+        else:
+            raise TypeError
+```
+
+## Код покрыт тестами 100%

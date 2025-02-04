@@ -1,3 +1,5 @@
+import pytest
+
 from src.Product import Product
 
 new_prod = Product.new_product(
@@ -25,4 +27,14 @@ def test_price():
 
 
 def test_str(product_1):
-    assert str(product_1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+    assert str(product_1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
+
+
+def test_add_not_int(grass_1):
+    with pytest.raises(TypeError):
+        result = grass_1 + "1"
+
+
+def test_add_other_class(grass_1, product_1):
+    with pytest.raises(TypeError):
+        result = grass_1 + product_1
