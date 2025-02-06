@@ -38,3 +38,10 @@ def test_add_not_int(grass_1):
 def test_add_other_class(grass_1, product_1):
     with pytest.raises(TypeError):
         result = grass_1 + product_1
+
+
+def test_mixin_product(capsys):
+    Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+
+    message = capsys.readouterr()
+    assert message.out.strip() == "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', 180000.0, 5)"

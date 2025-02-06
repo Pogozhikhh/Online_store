@@ -162,4 +162,29 @@ class Smartphone(Product):
             raise TypeError
 ```
 
+## Домашняя работа 16_2
+### Создание базового абстрактного класса и реализация класса миксин
+
+### Базовый класс BaseProduct
+```
+class BaseProduct(ABC):
+
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+```
+
+### Класс миксин MixinLog
+```
+class MixinLog:
+
+    def __init__(self):
+        print(repr(self))
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
+
+```
+
 ## Код покрыт тестами 100%
