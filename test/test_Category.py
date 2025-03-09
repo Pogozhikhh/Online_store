@@ -1,4 +1,5 @@
-from test.conftest import category_tv
+from itertools import product
+from test.conftest import category_smart, category_tv
 
 import pytest
 
@@ -38,3 +39,20 @@ def test_count_quanity(category_smart):
 def test_add_different_class(category_smart):
     with pytest.raises(TypeError):
         category_smart.add_product("Nothing")
+
+def test_middle_price():
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+    category1 = Category("Смартфоны", "Категория смартфонов", [product1, product2])
+    assert category1.middle_price() == 30000.0
+
+def test_middle_price_empy():
+    category = Category("Category", "Description", [])
+    assert category.middle_price() == 0.0
+
+def test_add_product_with_zero_quantity():
+    with pytest.raises(ValueError) as e:
+        test_prod = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+        Category.add_product(test_prod)
+    assert (str(e.value), "Товар с нулевым количеством не может быть добавлен")

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class MixinLog:
@@ -12,8 +13,9 @@ class MixinLog:
 
 class BaseProduct(ABC):
 
+    @classmethod
     @abstractmethod
-    def __add__(self, other):
+    def new_product(cls, *args: Any, **kwargs: Any) -> "BaseProduct":
         pass
 
 
@@ -26,6 +28,8 @@ class Product(BaseProduct, MixinLog):
     quantity = int
 
     def __init__(self, name, description, price, quantity):
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен.")
         self.name = name
         self.description = description
         self.__price = price
@@ -36,7 +40,9 @@ class Product(BaseProduct, MixinLog):
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.\n"
 
     def __add__(self, other):
-        return self.__price * self.quantity + other.__price * other.quantity
+        if isinstance(other, Product):
+            return round(self.price * self.quantity + other.price * other.quantity)
+        raise TypeError()
 
     @property
     def price(self):

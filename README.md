@@ -187,4 +187,33 @@ class MixinLog:
 
 ```
 
+## Домашняя работа 17_1
+### Обработка исключений, которые могут возникать при обработке товаров, и уведомление с их помощью пользователя.
+
+### Класс Product
+```
+    def __init__(self, name, description, price, quantity):
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен.")
+        self.name = name
+        self.description = description
+        self.__price = price
+        self.quantity = quantity
+        super().__init__()
+```
+
+### Класс Category с добавлением метода middle_price
+```
+    def middle_price(self):
+        """Метод подсчета среднего ценника всех товаров"""
+        try:
+            total_price = sum([product.price for product in self.__products])
+            total_qua = sum([product.quantity for product in self.__products])
+            return round(total_price / total_qua, 3)
+        except ZeroDivisionError as e:
+            print(e)
+            return 0
+```
+
+
 ## Код покрыт тестами 100%

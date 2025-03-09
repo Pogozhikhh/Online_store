@@ -30,6 +30,11 @@ def product_4():
 
 
 @pytest.fixture
+def product_5():
+    return Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+
+
+@pytest.fixture
 def category_tv(product_4):
     return Category(
         "Телевизоры",
@@ -45,3 +50,19 @@ def category_smart(product_1, product_2, product_3):
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
         [product_1, product_2, product_3],
     )
+
+
+@pytest.fixture
+def categories() -> tuple:
+    category_smart = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product_1, product_2],
+    )
+    category_tv = Category(
+        "Телевизоры",
+        "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+        [product_4],
+    )
+
+    return category_smart, category_tv

@@ -1,3 +1,5 @@
+from pyexpat.errors import messages
+
 import pytest
 
 from src.Product import Product
@@ -45,3 +47,10 @@ def test_mixin_product(capsys):
 
     message = capsys.readouterr()
     assert message.out.strip() == "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', 180000.0, 5)"
+
+
+def test_add_zero_quanity():
+    with pytest.raises(ValueError) as e:
+        Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+
+    assert str(e.value) == "Товар с нулевым количеством не может быть добавлен."

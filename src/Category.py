@@ -1,5 +1,3 @@
-from itertools import product
-
 from src.Product import Product
 
 
@@ -27,12 +25,13 @@ class Category:
         return products
 
     def middle_price(self):
+        """Метод подсчета среднего ценника всех товаров"""
         try:
             total_price = sum([product.price for product in self.__products])
             total_qua = sum([product.quantity for product in self.__products])
             return round(total_price / total_qua, 3)
         except ZeroDivisionError as e:
-            print(f"Ошибка {e}")
+            print(e)
             return 0
 
     def __str__(self):
@@ -40,7 +39,6 @@ class Category:
         for product in self.__products:
             total_quanity += product.quantity
         return f"{self.name}, количество продуктов: {total_quanity} шт."
-
 
     @property
     def product_list(self):
@@ -51,8 +49,17 @@ class Category:
 
     def add_product(self, new_prod: Product):
         """Метод добавления нового продукта"""
-        if not isinstance(new_prod, Product):
-            raise TypeError
+        if isinstance(new_prod, Product):
+            try:
+                if new_prod.quantity == 0:
+                    raise ValueError("Товар с нулевым количеством не может быть добавлен")
+            except ValueError as e:
+                print(f"Ошибка {e}")
+            else:
+                self.__products.append(new_prod)
+                Category.product_count += 1
+                print(f"Товар '{new_prod.name}' успешно добавлен.")
+            finally:
+                print("Обработка добавления товара завершена.")
         else:
-            self.__products.append(new_prod)
-        Category.product_count += 1
+            raise TypeError()
