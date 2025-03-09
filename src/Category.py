@@ -1,3 +1,5 @@
+from itertools import product
+
 from src.Product import Product
 
 
@@ -24,11 +26,21 @@ class Category:
             products += str(product)
         return products
 
+    def middle_price(self):
+        try:
+            total_price = sum([product.price for product in self.__products])
+            total_qua = sum([product.quantity for product in self.__products])
+            return round(total_price / total_qua, 3)
+        except ZeroDivisionError as e:
+            print(f"Ошибка {e}")
+            return 0
+
     def __str__(self):
         total_quanity = 0
         for product in self.__products:
             total_quanity += product.quantity
         return f"{self.name}, количество продуктов: {total_quanity} шт."
+
 
     @property
     def product_list(self):
